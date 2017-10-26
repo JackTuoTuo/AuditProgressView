@@ -2,11 +2,17 @@
 <resources>
     <!-- 申请进度的自定义view-->
     <declare-styleable name="AuditProgressView">
+        <!--当前步骤是否完成 -->
         <attr name="apv_isCurrentComplete" format="boolean" />
+        <!--下一个步骤是否完成 -->
         <attr name="apv_isNextComplete" format="boolean" />
+        <!--是不是第一个步骤 -->
         <attr name="apv_isFirstStep" format="boolean" />
+        <!--是不是最后一个步骤 -->
         <attr name="apv_isLastStep" format="boolean" />
+        <!--共有几个步骤 -->
         <attr name="apv_stepCount" format="integer" />
+        <!--步骤提示 -->
         <attr name="apv_text" format="string|reference" />
     </declare-styleable>
 

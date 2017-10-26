@@ -82,6 +82,8 @@ public class AuditProgressView extends View {
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(widthMeasureSpec);
 
+        // 在宽高不是精确模式时,定义最小宽高
+
         if (widthMode != MeasureSpec.EXACTLY) {
             width = getDisplayMetrics(getContext()).widthPixels / stepCount;
         }
@@ -96,6 +98,7 @@ public class AuditProgressView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        // 根据 当前步骤是否完成 确定中间的图片
         if (mIsCurrentComplete) {
             audit_drawBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.audit_complete);
         } else {
@@ -103,12 +106,14 @@ public class AuditProgressView extends View {
         }
 
 
+        // 获取自定义View的宽高
         width = getWidth();
         height = getHeight();
+
         // 绘制图片
         canvas.drawBitmap(audit_drawBitmap, width / 2 - audit_drawBitmap.getWidth() / 2, height / 2 - audit_drawBitmap.getHeight() / 2, paint);
 
-        // 绘制文字
+        // 根据当前步骤是否完成 确定绘制文字颜色
         String mString = text;
         TextPaint tp = new TextPaint();
         if (mIsCurrentComplete) {
@@ -117,6 +122,7 @@ public class AuditProgressView extends View {
             tp.setColor(Color.parseColor("#757575"));
         }
 
+        // 绘制多行文字
         tp.setStyle(Paint.Style.FILL);
         Point point = new Point(width / 2, dp2px(getContext(), 70));
         tp.setTextSize(sp2px(getContext(), 14));
@@ -125,7 +131,7 @@ public class AuditProgressView extends View {
         // 绘制线条
         paint.setStrokeWidth(dp2px(getContext(), 2));
 
-
+        // 根据是不是第一个步骤 确定是否有左边线条
         if (!mIsFirstStep) {
             // 左边
             // 根据当前步骤是否完成 来确定左边线条的颜色
@@ -134,9 +140,10 @@ public class AuditProgressView extends View {
             } else {
                 paint.setColor(Color.parseColor("#E4E4E4"));
             }
-            canvas.drawLine(0, height / 2 , width / 2 - audit_drawBitmap.getWidth() / 2 - dp2px(getContext(), 8), height / 2, paint);
+            canvas.drawLine(0, height / 2, width / 2 - audit_drawBitmap.getWidth() / 2 - dp2px(getContext(), 8), height / 2, paint);
         }
 
+        // 根据是不是最后的步骤 确定是否有右边线条
         if (!mIsLastStep) {
             // 右边
             // 根据下一个步骤是否完成 来确定右边线条的颜色
@@ -145,7 +152,7 @@ public class AuditProgressView extends View {
             } else {
                 paint.setColor(Color.parseColor("#E4E4E4"));
             }
-            canvas.drawLine(width / 2 + audit_drawBitmap.getWidth() / 2 + dp2px(getContext(), 8), height / 2, width, height / 2 , paint);
+            canvas.drawLine(width / 2 + audit_drawBitmap.getWidth() / 2 + dp2px(getContext(), 8), height / 2, width, height / 2, paint);
         }
 
 
@@ -162,9 +169,7 @@ public class AuditProgressView extends View {
     }
 
 
-    public void setIsCurrentComplete(boolean isCurrentComplete) {
-        this.mIsCurrentComplete = isCurrentComplete;
-    }
+    public void setIsCurrentComplete(boolean isCurrentComplete) {this.mIsCurrentComplete = isCurrentComplete;}
 
     public void setIsNextComplete(boolean isNextComplete) {
         this.mIsNextComplete = isNextComplete;
@@ -187,7 +192,6 @@ public class AuditProgressView extends View {
     }
 
 
-
     /**
      * 获取屏幕Metrics参数
      *
@@ -197,7 +201,6 @@ public class AuditProgressView extends View {
     public static DisplayMetrics getDisplayMetrics(Context context) {
         return context.getResources().getDisplayMetrics();
     }
-
 
 
     /**
