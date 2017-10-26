@@ -1,18 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tuo.auditprogressview.MainActivity">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:scrollbars="none">
 
-</android.support.constraint.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/ll_audit_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="3dp"
+        android:background="@android:color/darker_gray" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.example.tuo.auditprogressview.view.AuditProgressView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:apv_isCurrentComplete="true"
+            app:apv_isFirstStep="true"
+            app:apv_isLastStep="false"
+            app:apv_isNextComplete="false"
+            app:apv_stepCount="3"
+            app:apv_text="第一步" />
+
+        <com.example.tuo.auditprogressview.view.AuditProgressView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:apv_isCurrentComplete="false"
+            app:apv_isFirstStep="false"
+            app:apv_isLastStep="false"
+            app:apv_isNextComplete="false"
+            app:apv_stepCount="3"
+            app:apv_text="第二步" />
+
+        <com.example.tuo.auditprogressview.view.AuditProgressView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:apv_isCurrentComplete="false"
+            app:apv_isFirstStep="false"
+            app:apv_isLastStep="true"
+            app:apv_isNextComplete="false"
+            app:apv_stepCount="3"
+            app:apv_text="第三步" />
+
+    </LinearLayout>
+
+</LinearLayout>

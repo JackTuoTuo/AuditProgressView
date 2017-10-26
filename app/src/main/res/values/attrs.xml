@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 申请进度的自定义view-->
+    <declare-styleable name="AuditProgressView">
+        <attr name="apv_isCurrentComplete" format="boolean" />
+        <attr name="apv_isNextComplete" format="boolean" />
+        <attr name="apv_isFirstStep" format="boolean" />
+        <attr name="apv_isLastStep" format="boolean" />
+        <attr name="apv_stepCount" format="integer" />
+        <attr name="apv_text" format="string|reference" />
+    </declare-styleable>
+
+</resources>
